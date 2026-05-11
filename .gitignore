@@ -1,0 +1,21 @@
+# Build artefacts
+bin/
+obj/
+
+# Generated at runtime
+data/
+
+# IDE
+.vs/
+.vscode/
+*.code-workspace
+*.user
+*.suo
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Not for GitHub (по требованию)
+README.md
+screenshots/

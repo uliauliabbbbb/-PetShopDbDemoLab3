@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>PetShop - управление товарами</title>
+<link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="container">
+
+<h1>PetShop - управление товарами</h1>
+<div class="meta">База <b>petshop</b> (PostgreSQL). Стек: ASP.NET Core 8 + EF Core + Minimal API. <span id="startedAt"></span></div>
+
+<section class="crud">
+  <h2>
+    <span><span class="badge">CRUD</span> Управление товарами (EF Core)</span>
+    <button id="btnAdd" class="btn-success" type="button">+ Добавить товар</button>
+  </h2>
+  <div class="legend">
+    <span class="l-insert">добавлено через эту страницу</span>
+    <span class="l-update">изменено через эту страницу</span>
+  </div>
+  <div id="productsBox"><div class="empty">Загрузка...</div></div>
+</section>
+
+<section class="crud">
+  <h2><span><span class="badge">LOG</span> Журнал CRUD-операций</span>
+    <span id="logSummary" class="small"></span>
+  </h2>
+  <div id="logBox"><div class="empty">Операций пока нет. Используйте кнопки выше.</div></div>
+</section>
+
+<section class="odbc">
+  <h2><span><span class="badge">ODBC</span> Снимок товаров на момент старта</span><span class="small">через PostgreSQL Unicode(x64) + JOIN с категориями</span></h2>
+  <div id="odbcBox"><div class="empty">Загрузка...</div></div>
+</section>
+
+<section class="oledb">
+  <h2><span><span class="badge">OleDb</span> Заказы</span><span class="small">Microsoft.ACE.OLEDB.16.0 через CSV-мост</span></h2>
+  <div id="oleBox"><div class="empty">Загрузка...</div></div>
+</section>
+
+<section class="linq">
+  <h2><span><span class="badge">LINQ</span> Статистика по пользователям</span><span class="small">EF Core / Npgsql</span></h2>
+  <div id="linqStatsBox"><div class="empty">Загрузка...</div></div>
+</section>
+
+<section class="linq">
+  <h2><span><span class="badge">LINQ</span> Последние 3 заказа</span></h2>
+  <div id="linqRecentBox"><div class="empty">Загрузка...</div></div>
+</section>
+
+</div>
+
+<div id="overlay" class="overlay">
+  <div class="modal">
+    <h3 id="modalTitle">Добавить товар</h3>
+    <input type="hidden" id="fId">
+    <div class="form-row">
+      <label for="fName">Название</label>
+      <input type="text" id="fName" maxlength="200" placeholder="Например: Корм для котят Royal Canin">
+    </div>
+    <div class="form-row">
+      <label for="fCategory">Категория</label>
+      <select id="fCategory"></select>
+    </div>
+    <div class="form-row row">
+      <div>
+        <label for="fPrice">Цена</label>
+        <input type="number" id="fPrice" step="0.01" min="0" placeholder="0.00">
+      </div>
+      <div>
+        <label for="fStock">Остаток</label>
+        <input type="number" id="fStock" step="1" min="0" placeholder="0">
+      </div>
+    </div>
+    <div class="form-row" id="rowDescription">
+      <label for="fDescription">Описание (опционально)</label>
+      <textarea id="fDescription" rows="2" placeholder="Краткое описание товара"></textarea>
+    </div>
+    <div class="form-row" id="rowAnimal">
+      <label for="fAnimal">Тип животного</label>
+      <select id="fAnimal">
+        <option value="cat">cat</option>
+        <option value="dog">dog</option>
+        <option value="bird">bird</option>
+        <option value="fish">fish</option>
+        <option value="rodent">rodent</option>
+        <option value="universal" selected>universal</option>
+      </select>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-secondary" type="button" id="btnCancel">Отмена</button>
+      <button class="btn-success" type="button" id="btnSave">Сохранить</button>
+    </div>
+  </div>
+</div>
+<div class="toast-wrap" id="toasts"></div>
+
+<script src="/app.js"></script>
+</body>
+</html>
